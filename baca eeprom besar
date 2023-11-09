@@ -1,0 +1,18 @@
+#include <EEPROM.h>
+
+int valueToStore = 1000;
+byte byte1 = (byte)(valueToStore >> 8);  // Byte pertama
+byte byte2 = (byte)valueToStore;         // Byte kedua
+
+int address1 = 0;  // Alamat EEPROM untuk byte pertama
+int address2 = 1;  // Alamat EEPROM untuk byte kedua
+
+void setup() {
+  EEPROM.write(address1, byte1);
+  EEPROM.write(address2, byte2);
+}
+
+void loop() {
+  // Code lainnya di sini
+  int storedValue = (int(EEPROM.read(address1)) << 8) + EEPROM.read(address2);
+}
