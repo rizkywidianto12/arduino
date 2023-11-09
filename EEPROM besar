@@ -1,0 +1,18 @@
+#include <EEPROM.h>
+
+int valueToStore = 12345;
+int address = 0;
+
+void setup() {
+  EEPROM.begin(512); // Mulai EEPROM dengan kapasitas 512 byte
+  EEPROM.put(address, valueToStore); // Menyimpan integer ke EEPROM
+  EEPROM.commit(); // Simpan perubahan ke EEPROM
+}
+
+void loop() {
+  int storedValue = 0;
+  EEPROM.get(address, storedValue); // Ambil integer dari EEPROM
+  Serial.begin(9600);
+  Serial.print("Nilai yang disimpan di EEPROM: ");
+  Serial.println(storedValue);
+}
